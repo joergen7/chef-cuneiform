@@ -22,7 +22,6 @@ package "git"
 package "graphviz"
 
 directory node.dir.software
-directory cuneiform_dir
 
 git "git_clone_cuneiform" do
   action :checkout
