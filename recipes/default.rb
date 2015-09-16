@@ -11,7 +11,22 @@ cuneiform_bin = "#{cuneiform_dir}/cuneiform-dist/target/cuneiform-dist-2.0.2-SNA
 
 include_recipe "chef-cuneiform::_common"
 
-package "openjdk-7-jdk"
+# java
+if platform_family?( "debian" )
+	
+  package "openjdk-7-jdk"
+  
+elsif platform_family?( "fedora" )
+	
+  package "java-1.8.0-openjdk"
+  
+else
+	
+  raise "Platform not recognized."
+  
+end
+
+
 package "maven"
 package "scala"
 package "octave"
