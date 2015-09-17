@@ -7,10 +7,6 @@
 cuneiform_dir = "#{node.dir.software}/cuneiform"
 cuneiform_bin = "#{cuneiform_dir}/cuneiform-dist/target/cuneiform-dist-2.0.2-SNAPSHOT/cuneiform-2.0.2-SNAPSHOT"
 
-
-
-include_recipe "chef-cuneiform::_common"
-
 package "openjdk-7-jdk"
 package "r-base"
 package "maven"
