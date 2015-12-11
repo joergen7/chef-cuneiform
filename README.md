@@ -12,8 +12,8 @@ To install it enter on the command line
 
 ## Setting up Cuneiform
 
-To install Cuneiform locally, create a directory "cookbooks", clone the cookbook
-into it and install the dependencies:
+To install Cuneiform on your Ubuntu machine, create a directory "cookbooks", clone the cookbook
+into it and execute it:
 
     mkdir cookbooks
     cd cookbooks
