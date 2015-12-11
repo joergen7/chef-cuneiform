@@ -5,11 +5,6 @@ Chef cookbook to setup vanilla Cuneiform
 
 ## Prerequisites
 
-Install the following packages:
-
-- virtualbox
-- vagrant
-
 The Chef DK can be downloaded from the [Chef download page](https://downloads.chef.io/chef-dk/).
 To install it enter on the command line
 
