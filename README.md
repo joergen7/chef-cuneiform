@@ -1,6 +1,6 @@
 # chef-cuneiform
 
-Chef cookbook to setup vanilla Cuneiform
+Chef cookbook to set up vanilla Cuneiform on an Ubuntu machine.
 
 
 ## Prerequisites
