@@ -19,4 +19,4 @@ into it and install the dependencies:
     cd cookbooks
     git clone https://github.com/joergen7/chef-cuneiform.git
     cd ..
-    sudo chef-client -z -r "variant-call::default"
+    sudo chef-client -z -r "chef-cuneiform::default"
