@@ -65,3 +65,7 @@ To test whether Cuneiform works, run
 If you have installed Cuneiform on a VM you have to login to that VM first by entering
 
     kitchen login
+
+To start the Cuneiform editor please enter
+
+    cfide
