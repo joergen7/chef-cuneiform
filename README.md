@@ -44,8 +44,8 @@ You can drop the VM by entering
 
 ## Building locally
 
-Vanilla Cuneiform can also be set up in a VM (see Section Building a VM with kitchen).
-In a production environment it is, however, recommended to run the Cuneiform locally.
+This section describes how to set up Cuneiform locally without the indirection
+of a VM. If you want to try out Cuneiform in a VM first see Section Building a VM with kitchen.
 
 To install this cookbook locally, create a directory "cookbooks", clone the cookbook
 into it and install the dependencies:
