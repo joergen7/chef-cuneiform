@@ -58,13 +58,13 @@ into it and run the chef client:
     
 ## Testing your installation
 
-To test whether Cuneiform works, run
-
-    cuneiform --help
-
 If you have installed Cuneiform on a VM you have to login to that VM first by entering
 
     kitchen login
+
+To test whether Cuneiform works, run
+
+    cuneiform --help
 
 To start the Cuneiform editor please enter
 
