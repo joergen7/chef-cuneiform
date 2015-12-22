@@ -48,7 +48,7 @@ This section describes how to set up Cuneiform locally without the indirection
 of a VM. If you want to try out Cuneiform in a VM first see Section Building a VM with kitchen.
 
 To install this cookbook locally, create a directory "cookbooks", clone the cookbook
-into it and install the dependencies:
+into it and run the chef client:
 
     mkdir cookbooks
     cd cookbooks
