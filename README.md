@@ -53,9 +53,7 @@ into it and install the dependencies:
     mkdir cookbooks
     cd cookbooks
     git clone https://github.com/joergen7/chef-cuneiform.git
-    cd chef-cuneiform
-    berks vendor ..
-    cd ../..
+    cd ..
     sudo chef-client -z -r "chef-cuneiform::default"
     
 ## Testing your installation
