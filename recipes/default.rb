@@ -6,7 +6,7 @@
 
 cuneiform_dir = "#{node.dir.software}/cuneiform"
 cuneiform_bin = "#{cuneiform_dir}/cuneiform-dist/target"
-cuneiform_svn = "2.0.3-RELEASE"
+cuneiform_vsn = "2.0.3-RELEASE"
 
 package "openjdk-7-jdk"
 package "r-base"
