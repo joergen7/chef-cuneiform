@@ -6,6 +6,7 @@
 
 cuneiform_dir = "#{node.dir.software}/cuneiform"
 cuneiform_bin = "#{cuneiform_dir}/cuneiform-dist/target"
+cuneiform_svn = "2.0.3-RELEASE"
 
 package "openjdk-7-jdk"
 package "r-base"
@@ -22,7 +23,7 @@ git "git_clone_cuneiform" do
   action :checkout
   repository node.github.cuneiform
   destination cuneiform_dir
-  revision "master"
+  revision cuneiform_vsn
 end
 
 bash "mvn_compile_cuneiform" do
@@ -36,7 +37,7 @@ end
 file "#{node.dir.bin}/logview" do
   content <<-CONTENT
 #!/usr/bin/env bash
-java -cp #{cuneiform_bin}/cuneiform-dist-2.0.3-SNAPSHOT.jar de.huberlin.wbi.cuneiform.logview.main.Main $@  
+java -cp #{cuneiform_bin}/cuneiform-dist-#{cuneiform_vsn}.jar de.huberlin.wbi.cuneiform.logview.main.Main $@  
   CONTENT
   mode '0755'
 end
@@ -44,7 +45,7 @@ end
 file "#{node.dir.bin}/cfide" do
   content <<-CONTENT
 #!/usr/bin/env bash
-java -cp #{cuneiform_bin}/cuneiform-dist-2.0.3-SNAPSHOT.jar de.huberlin.wbi.cuneiform.cfide.main.Main $@  
+java -cp #{cuneiform_bin}/cuneiform-dist-#{cuneiform_vsn}.jar de.huberlin.wbi.cuneiform.cfide.main.Main $@  
   CONTENT
   mode '0755'
 end
@@ -52,7 +53,7 @@ end
 file "#{node.dir.bin}/cuneiform" do
   content <<-CONTENT
 #!/usr/bin/env bash
-nice -n 19 java -jar #{cuneiform_bin}/cuneiform-dist-2.0.3-SNAPSHOT.jar -l /tmp/cf-cache $@  
+nice -n 19 java -jar #{cuneiform_bin}/cuneiform-dist-#{cuneiform_vsn}.jar -l /tmp/cf-cache $@  
   CONTENT
   mode '0755'
 end
