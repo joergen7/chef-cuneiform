@@ -53,7 +53,7 @@ end
 file "#{node.dir.bin}/cuneiform" do
   content <<-CONTENT
 #!/usr/bin/env bash
-nice -n 19 java -jar #{cuneiform_bin}/cuneiform-dist-#{cuneiform_vsn}.jar -l /tmp/cf-cache $@  
+nice -n 10 java -jar #{cuneiform_bin}/cuneiform-dist-#{cuneiform_vsn}.jar -l /tmp/cf-cache $@  
   CONTENT
   mode '0755'
 end
