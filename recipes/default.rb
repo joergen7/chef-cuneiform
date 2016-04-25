@@ -5,17 +5,12 @@
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
 cuneiform_dir = "#{node.dir.software}/cuneiform"
-cuneiform_bin = "#{cuneiform_dir}/cuneiform-dist/target"
-cuneiform_vsn = "2.0.3-RELEASE"
+cuneiform_bin = "#{cuneiform_dir}/_build/default/bin"
+cuneiform_vsn = "2.2.0-release"
 
-package "openjdk-7-jdk"
+include_recipe "chef-misc::rebar3"
+
 package "r-base"
-package "maven"
-package "scala"
-package "octave"
-package "clisp"
-package "git"
-package "graphviz"
 
 directory node.dir.software
 
@@ -26,34 +21,8 @@ git "git_clone_cuneiform" do
   revision cuneiform_vsn
 end
 
-bash "mvn_compile_cuneiform" do
-  code <<-SCRIPT
-mvn clean package
-  SCRIPT
+bash "install_cuneiform" do
+  code "make install"
   cwd cuneiform_dir
-  not_if "#{Dir.exists?( "#{cuneiform_dir}/cuneiform-dist/target" )}"
-end
-
-file "#{node.dir.bin}/logview" do
-  content <<-CONTENT
-#!/usr/bin/env bash
-java -cp #{cuneiform_bin}/cuneiform-dist-#{cuneiform_vsn}.jar de.huberlin.wbi.cuneiform.logview.main.Main $@  
-  CONTENT
-  mode '0755'
-end
-
-file "#{node.dir.bin}/cfide" do
-  content <<-CONTENT
-#!/usr/bin/env bash
-java -cp #{cuneiform_bin}/cuneiform-dist-#{cuneiform_vsn}.jar de.huberlin.wbi.cuneiform.cfide.main.Main $@  
-  CONTENT
-  mode '0755'
-end
-
-file "#{node.dir.bin}/cuneiform" do
-  content <<-CONTENT
-#!/usr/bin/env bash
-nice -n 10 java -jar #{cuneiform_bin}/cuneiform-dist-#{cuneiform_vsn}.jar -l /tmp/cf-cache $@  
-  CONTENT
-  mode '0755'
+  not_if "#{File.exists?( "#{node.dir.bin}/cuneiform" )}"
 end
