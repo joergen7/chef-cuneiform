@@ -29,6 +29,6 @@ bash "install_cuneiform" do
 end
 
 file "/usr/local/bin/cuneiform" do
-  content "rlwrap #{cuneiform_dir}/_build/default/bin/cuneiform"
+  content "rlwrap #{cuneiform_dir}/_build/default/bin/cuneiform $@"
   mode "0755"
 end
