@@ -11,6 +11,7 @@ cuneiform_vsn = "2.2.0-release"
 include_recipe "chef-misc::rebar3"
 
 package "r-base"
+package "rlwrap"
 
 directory node.dir.software
 
@@ -22,7 +23,11 @@ git "git_clone_cuneiform" do
 end
 
 bash "install_cuneiform" do
-  code "make install"
+  code "make"
   cwd cuneiform_dir
-  not_if "#{File.exists?( "#{node.dir.bin}/cuneiform" )}"
+  not_if "#{File.exists?( "#{cuneiform_dir}/_build/default/bin/cuneiform" )}"
+end
+
+file "/usr/local/bin/cuneiform" do
+  content "rlwrap #{cuneiform_dir}/_build_default/bin/cuneiform"
 end
