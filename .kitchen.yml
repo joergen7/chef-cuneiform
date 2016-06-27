@@ -1,16 +1,18 @@
 ---
 driver:
   name: vagrant
+  customize:
+    memory: 1024
+
 
 provisioner:
   name: chef_zero
 
 platforms:
-  - name: ubuntu-14.04
+  - name: ubuntu-16.04
 
 suites:
   - name: default
     run_list:
-      - recipe[chef-cuneiform::_common]
       - recipe[chef-cuneiform::default]
     attributes:
