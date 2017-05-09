@@ -24,7 +24,7 @@ git "git_clone_cuneiform" do
 end
 
 bash "install_cuneiform" do
-  code "make"
+  code "rebar3 escriptize"
   cwd cuneiform_dir
   creates "#{cuneiform_dir}/_build/default/bin/cuneiform"
 end
