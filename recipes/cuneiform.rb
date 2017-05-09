@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2015 Jörgen Brandt, All Rights Reserved.
 
-cuneiform_vsn    = "2.2.1-release"
+cuneiform_vsn    = "2.2.1-hotfix"
 cuneiform_dir    = "#{node["dir"]["software"]}/cuneiform-#{cuneiform_vsn}"
 cuneiform_bin    = "#{cuneiform_dir}/_build/default/bin"
 cuneiform_github = "https://github.com/joergen7/cuneiform.git"
