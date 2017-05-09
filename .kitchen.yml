@@ -13,7 +13,4 @@ platforms:
 
 suites:
   - name: default
-    run_list:
-      - recipe[chef-cuneiform::_common]
-      - recipe[chef-cuneiform::default]
     attributes:
