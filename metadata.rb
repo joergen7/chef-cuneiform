@@ -1,9 +1,9 @@
 name             'chef-cuneiform'
-maintainer       'Jorgen Brandt'
-maintainer_email 'brandjoe@hu-berlin.de'
-license          'all_rights'
-description      'Installs/Configures chef-cuneiform'
-long_description 'Installs/Configures chef-cuneiform'
+maintainer       'Jörgen Brandt'
+maintainer_email 'joergen.brandt@onlinehome.de'
+license          'Apache 2.0'
+description      'Installs Cuneiform'
+long_description 'Installs Cuneiform'
 version          '0.1.0'
 
-depends "chef-misc"
+depends "chef-misc", "0.1.0"
