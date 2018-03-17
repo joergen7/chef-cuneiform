@@ -14,4 +14,4 @@ run_list "chef-cuneiform::default"
 
 # Specify a custom source for a single cookbook:
 cookbook "chef-cuneiform", path: "."
-cookbook "chef-misc", git: "https://github.com/joergen7/chef-misc.git"
+cookbook "chef-misc", "0.1.1", git: "https://github.com/joergen7/chef-misc.git"

@@ -6,4 +6,4 @@ description      'Installs Cuneiform'
 long_description 'Installs Cuneiform'
 version          '0.1.1'
 
-depends "chef-misc", "0.1.0"
+depends "chef-misc", "0.1.1"
