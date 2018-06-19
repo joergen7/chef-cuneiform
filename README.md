@@ -1,6 +1,6 @@
 # chef-cuneiform
 
-Chef cookbook to set up vanilla Cuneiform on an Ubuntu machine.
+Chef cookbook to set up Cuneiform and its dependencies.
 
 
 ## Prerequisites
@@ -15,7 +15,7 @@ If you want to set up a VM to test Cuneiform these additional packages are requi
 - [VirtualBox](https://www.virtualbox.org/)
 - [Vagrant](https://www.vagrantup.com/)
 
-Under Ubuntu you can install the ChefDK by entering on the command line
+Under Ubuntu you can download the [ChefDK](https://downloads.chef.io/chefdk) and install it by entering on the command line
 
     sudo dpkg -i chefdk_*.deb
 
@@ -56,7 +56,7 @@ into it and run the chef client:
     cd ..
     sudo chef-client -z -r "chef-cuneiform::default"
     
-## Testing your installation
+## Using your installation
 
 If you have installed Cuneiform on a VM you have to login to that VM first by entering
 
@@ -65,6 +65,12 @@ If you have installed Cuneiform on a VM you have to login to that VM first by en
 To test whether Cuneiform works, run
 
     cuneiform --help
+
+## Running Automated Tests
+
+To run the automated test suite run
+
+    kitchen verify
 
 
 ## Authors

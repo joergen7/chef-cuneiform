@@ -1,5 +1,4 @@
-source "https://supermarket.chef.io"
+# frozen_string_literal: true
+source 'https://supermarket.chef.io'
 
 metadata
-
-cookbook "chef-misc", "0.1.1", github: "joergen7/chef-misc"
