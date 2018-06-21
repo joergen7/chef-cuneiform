@@ -18,9 +18,8 @@
 # limitations under the License.
 #
 
+## Install Cuneiform
+
 include_recipe 'chef-cuneiform::cuneiform'
 
-include_recipe 'java::default'
-# package 'octave'
-# package 'r-base'
-# package 'racket'
+

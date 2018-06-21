@@ -18,9 +18,8 @@
 # limitations under the License.
 #
 
-default['cuneiform']['version']         = '3.0.3'
-
-default['java']['jdk_version']          = '8'
-default['java']['install_flavor']       = 'openjdk'
-
+default['cuneiform']['cuneiform']['version'] = '3.0.3'
+default['cuneiform']['cre']['version']       = '0.1.6'
+default['cuneiform']['cf_worker']['version'] = '0.1.4'
+default['cuneiform']['cf_client']['version'] = '0.1.5'
 

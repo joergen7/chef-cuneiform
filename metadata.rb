@@ -20,4 +20,3 @@ issues_url 'https://github.com/joergen7/chef-cuneiform/issues'
 source_url 'https://github.com/joergen7/chef-cuneiform'
 
 depends 'chef-rebar3', '0.1.0'
-depends 'java',        '2.1.0'

@@ -3,70 +3,43 @@
 Chef cookbook to set up Cuneiform and its dependencies.
 
 
-## Prerequisites
+## Requirements
 
-Install the following packages:
+### Platforms
 
-- [git](https://git-scm.com/)
-- [Chef Development Kit](https://downloads.chef.io/chef-dk/)
+- CentOS
+- Debian
+- Fedora
+- openSUSE
+- Ubuntu
 
-If you want to set up a VM to test Cuneiform these additional packages are required:
+### Chef
 
-- [VirtualBox](https://www.virtualbox.org/)
-- [Vagrant](https://www.vagrantup.com/)
+- Chef 12.14+
 
-Under Ubuntu you can download the [ChefDK](https://downloads.chef.io/chefdk) and install it by entering on the command line
+### Cookbooks
 
-    sudo dpkg -i chefdk_*.deb
+- rebar3
+  - erlang
+    - build-essential
+    - mingw
+    - seven_zip
+    - windows
+    - yum-epel
+    - yum-erlang_solutions
 
+## Attributes
 
-## Building a VM with kitchen
+### Cuneiform Attributes
 
-This section describes how to set up vanilla Cuneiform in a Virtual
-Machine (VM). To do this, it does not matter whether you are running Linux,
-Mac OS, or Windows. However, if you are running an Ubuntu you may want to
-install Cuneiform directly without creating a VM (see Section Building locally).
+- `node['cuneiform']['version']` The Cuneiform version. Defaults to `'3.0.3'`.
 
-To build a VM from this cookbook for the first time, change your git
-base directory and enter the following:
+### Java Attributes
 
-    git clone https://github.com/joergen7/chef-cuneiform.git
-    cd chef-cuneiform
-    kitchen converge
-    
-You can log into the newly built VM by entering
+- `node['java']['jdk_version']` The JDK version. Set to `'8'`.
+- `node['java']['install_flavor']` The JDK provider. Set to `'openjdk'`.
 
-    kitchen login
-    
-You can drop the VM by entering
-
-    kitchen destroy
-
-## Building locally
-
-This section describes how to set up Cuneiform locally without the indirection
-of a VM. If you want to try out Cuneiform in a VM first see Section Building a VM with kitchen.
-
-To install this cookbook locally, create a directory "cookbooks", clone the cookbook
-into it and run the chef client:
-
-    mkdir cookbooks
-    cd cookbooks
-    git clone https://github.com/joergen7/chef-cuneiform.git
-    cd ..
-    sudo chef-client -z -r "chef-cuneiform::default"
-    
-## Using your installation
-
-If you have installed Cuneiform on a VM you have to login to that VM first by entering
-
-    kitchen login
-
-To test whether Cuneiform works, run
-
-    cuneiform --help
-
-## Running Automated Tests
+## Integration Tests
 
 To run the automated test suite run
 
