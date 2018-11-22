@@ -1,7 +1,7 @@
 #
 # Author::    Jörgen Brandt <joergen.brandt@onlinehome.de>
 # Cookbook::  chef-cuneiform
-# Recipe::    default
+# Recipe::    cf_worker
 #
 # Copyright:: 2015-2018 Jörgen Brandt
 #
@@ -18,14 +18,27 @@
 # limitations under the License.
 #
 
-## Install Cuneiform
+cf_worker_version = node['cuneiform']['cf_worker']['version']
+cf_worker_dir     = "/tmp/cf_worker-#{cf_worker_version}"
+cf_worker_github  = 'https://github.com/joergen7/cf_worker.git'
+
+git 'git_clone_cf_worker' do
+  repository cf_worker_github
+  destination cf_worker_dir
+  revision cf_worker_version
+end
+
+bash 'compile_cf_worker' do
+  code 'rebar3 escriptize'
+  cwd cf_worker_dir
+  environment 'PATH' => "/usr/local/bin:#{ENV['PATH']}"
+  creates "#{cf_worker_dir}/_build/default/bin/cf_worker"
+end
 
 
-include_recipe 'chef-rebar3::rebar3'
-include_recipe 'chef-cuneiform::cuneiform'
-include_recipe 'chef-cuneiform::cre'
-include_recipe 'chef-cuneiform::cf_worker'
-include_recipe 'chef-cuneiform::cf_client'
-include_recipe 'chef-cuneiform::effi'
+bash 'install_cf_worker' do
+  code "cp #{cf_worker_dir}/_build/default/bin/cf_worker /usr/local/bin"
+  creates "/usr/local/bin/cf_worker"
+end
 
 

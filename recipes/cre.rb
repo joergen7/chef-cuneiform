@@ -1,7 +1,7 @@
 #
 # Author::    Jörgen Brandt <joergen.brandt@onlinehome.de>
 # Cookbook::  chef-cuneiform
-# Recipe::    default
+# Recipe::    cre
 #
 # Copyright:: 2015-2018 Jörgen Brandt
 #
@@ -18,14 +18,27 @@
 # limitations under the License.
 #
 
-## Install Cuneiform
+cre_version = node['cuneiform']['cre']['version']
+cre_dir     = "/tmp/cre-#{cre_version}"
+cre_github  = 'https://github.com/joergen7/cre.git'
+
+git 'git_clone_cre' do
+  repository cre_github
+  destination cre_dir
+  revision cre_version
+end
+
+bash 'compile_cre' do
+  code 'rebar3 escriptize'
+  cwd cre_dir
+  environment 'PATH' => "/usr/local/bin:#{ENV['PATH']}"
+  creates "#{cre_dir}/_build/default/bin/cre"
+end
 
 
-include_recipe 'chef-rebar3::rebar3'
-include_recipe 'chef-cuneiform::cuneiform'
-include_recipe 'chef-cuneiform::cre'
-include_recipe 'chef-cuneiform::cf_worker'
-include_recipe 'chef-cuneiform::cf_client'
-include_recipe 'chef-cuneiform::effi'
+bash 'install_cre' do
+  code "cp #{cre_dir}/_build/default/bin/cre /usr/local/bin"
+  creates "/usr/local/bin/cre"
+end
 
 

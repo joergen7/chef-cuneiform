@@ -1,7 +1,7 @@
 #
 # Author::    Jörgen Brandt <joergen.brandt@onlinehome.de>
 # Cookbook::  chef-cuneiform
-# Recipe::    default
+# Recipe::    cf_client
 #
 # Copyright:: 2015-2018 Jörgen Brandt
 #
@@ -18,14 +18,26 @@
 # limitations under the License.
 #
 
-## Install Cuneiform
+cf_client_version = node['cuneiform']['cf_client']['version']
+cf_client_dir     = "/tmp/cf_client-#{cf_client_version}"
+cf_client_github  = 'https://github.com/joergen7/cf_client.git'
 
+git 'git_clone_cf_client' do
+  repository cf_client_github
+  destination cf_client_dir
+  revision cf_client_version
+end
 
-include_recipe 'chef-rebar3::rebar3'
-include_recipe 'chef-cuneiform::cuneiform'
-include_recipe 'chef-cuneiform::cre'
-include_recipe 'chef-cuneiform::cf_worker'
-include_recipe 'chef-cuneiform::cf_client'
-include_recipe 'chef-cuneiform::effi'
+bash 'compile_cf_client' do
+  code 'rebar3 escriptize'
+  cwd cf_client_dir
+  environment 'PATH' => "/usr/local/bin:#{ENV['PATH']}"
+  creates "#{cf_client_dir}/_build/default/bin/cf_client"
+end
+
+bash 'install_cf_client' do
+  code "cp #{cf_client_dir}/_build/default/bin/cf_client /usr/local/bin"
+  creates "/usr/local/bin/cf_client"
+end
 
 

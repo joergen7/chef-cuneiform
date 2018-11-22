@@ -1,7 +1,7 @@
 #
 # Author::    Jörgen Brandt <joergen.brandt@onlinehome.de>
 # Cookbook::  chef-cuneiform
-# Recipe::    default
+# Recipe::    effi
 #
 # Copyright:: 2015-2018 Jörgen Brandt
 #
@@ -18,14 +18,25 @@
 # limitations under the License.
 #
 
-## Install Cuneiform
+effi_version = node['cuneiform']['effi']['version']
+effi_dir     = "/tmp/effi-#{effi_version}"
+effi_github  = 'https://github.com/joergen7/effi.git'
+
+git 'git_clone_effi' do
+  repository effi_github
+  destination effi_dir
+  revision effi_version
+end
+
+bash 'compile_effi' do
+  code 'rebar3 escriptize'
+  cwd effi_dir
+  environment 'PATH' => "/usr/local/bin:#{ENV['PATH']}"
+  creates "#{effi_dir}/_build/default/bin/effi"
+end
 
 
-include_recipe 'chef-rebar3::rebar3'
-include_recipe 'chef-cuneiform::cuneiform'
-include_recipe 'chef-cuneiform::cre'
-include_recipe 'chef-cuneiform::cf_worker'
-include_recipe 'chef-cuneiform::cf_client'
-include_recipe 'chef-cuneiform::effi'
-
-
+bash 'install_effi' do
+  code "cp #{effi_dir}/_build/default/bin/effi /usr/local/bin"
+  creates "/usr/local/bin/effi"
+end
